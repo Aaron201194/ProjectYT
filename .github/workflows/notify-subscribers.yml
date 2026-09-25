@@ -1,0 +1,30 @@
+name: Notify Users on Release
+on:
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+
+jobs:
+  email_subscribers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: pip install gspread 
+        
+      - name: Run notification script
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.AIzaSyCj_OidzpHyJPQNtYJ4TXRCf8ggKR416dc }}
+          SHEET_ID: ${{ secrets.1rLFrU9rY5PfFht2PZpe2nauobimWwTnI1d5XBPDsBYA }}
+          SMTP_USER: ${{ secrets.projectyt.service@gmail.com }}
+          SMTP_PASSWORD: ${{ secrets.fsndydpttsarjuxv }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+        run: python notify.py
