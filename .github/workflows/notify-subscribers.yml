@@ -22,8 +22,8 @@ jobs:
       - name: Run notification script
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.AIzaSyCj_OidzpHyJPQNtYJ4TXRCf8ggKR416dc }}
-          SHEET_ID: ${{ secrets.1rLFrU9rY5PfFht2PZpe2nauobimWwTnI1d5XBPDsBYA }}
-          SMTP_USER: ${{ secrets.projectyt.service@gmail.com }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.fsndydpttsarjuxv }}
           RELEASE_NAME: ${{ github.event.release.name }}
           RELEASE_BODY: ${{ github.event.release.body }}
